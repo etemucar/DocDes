@@ -7,10 +7,10 @@ namespace DocDes.Core.Model
 
 
         public int TownId { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public virtual Town Town { get; set; }
-        public virtual ICollection<Address>Addresses { get; set; }
+        public virtual Town Town { get; set; } = null!;
+        public virtual ICollection<Address>Addresses { get; set; } = null!;
 
     }
 }

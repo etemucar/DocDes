@@ -5,8 +5,8 @@ namespace DocDes.Core.Model
     public class OrganizationLanguageRel : ModelBase 
     {
         public int OrganizationId { get; set; }
-        public string LanguageCd { get; set; }
+        public string LanguageCd { get; set; } = null!;
 
-        public virtual Organization Organization { get; set; }
+        public virtual Organization Organization { get; set; } = null!;
    }
 }

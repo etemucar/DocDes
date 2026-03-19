@@ -7,11 +7,11 @@ namespace DocDes.Core.Model
 
 
         public int DistrictId { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = null!;
         public string? ZipCode { get; set; }
-        public virtual District District { get; set; }
-        public virtual ICollection<Neighborhood> Neighborhoods { get; set; }
-        public virtual ICollection<Address>Addresses { get; set; }
+        public virtual District District { get; set; } = null!;
+        public virtual ICollection<Neighborhood> Neighborhoods { get; set; } = null!;
+        public virtual ICollection<Address>Addresses { get; set; } = null!;
 
     }
 }

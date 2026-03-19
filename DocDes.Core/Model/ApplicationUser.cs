@@ -5,11 +5,11 @@ namespace DocDes.Core.Model {
     {
         public int OrganizationId { get; set; }
         public int PartyRoleId { get; set; }
-        public string EMail { get; set; }
-        public string Password { get; set; }
+        public string EMail { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        public virtual PartyRole PartyRole { get; set; }
-        public virtual Organization Organization { get; set; }
+        public virtual PartyRole PartyRole { get; set; } = null!;
+        public virtual Organization Organization { get; set; } = null!;
 
         public void CopyFrom(ApplicationUser entity)
         {
