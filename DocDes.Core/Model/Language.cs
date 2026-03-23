@@ -1,12 +1,11 @@
 using DocDes.Core.Base;
 
-namespace DocDes.Core.Model
-{
-    public class Language : ModelBase 
-    {
-        public string LanguageCd { get; set; } = null!;
-        public string Name { get; set; } = null!;
+namespace DocDes.Core.Model;
 
-        public virtual ICollection<OrganizationLanguageRel> OrganizationLanguageRels { get; set; } = null!;
-   }
+public class Language : ModelBase<int>
+{
+    public string LanguageCd { get; set; } = null!;
+    public string Name { get; set; } = null!;
+
+    public virtual ICollection<OrganizationLanguageRel> OrganizationLanguageRels { get; set; } = null!;
 }

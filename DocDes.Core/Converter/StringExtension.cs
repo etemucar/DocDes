@@ -433,5 +433,10 @@ namespace DocDes.Core.Converter
             string pattern = @"(?<=[\w]{1})[\w-\._\+%]*(?=[\w]{1}@)";
             return Regex.Replace(mail, pattern, m => new string('*', m.Length));
         }
+
+        public static string ToSnakeCase(this string name)
+        {
+            return Regex.Replace(name, "([a-z])([A-Z])", "$1_$2").ToLower(CultureInfo.InvariantCulture);
+        }
     }
 }

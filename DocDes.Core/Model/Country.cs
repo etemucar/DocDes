@@ -1,12 +1,11 @@
 using DocDes.Core.Base;
 
-namespace DocDes.Core.Model
+namespace DocDes.Core.Model;
+
+public class Country : ModelBase<int>
 {
-    public class Country : ModelBase 
-    {
-        public int Code { get; set; }
-        public string Name { get; set; } = null!;
-        
-        public virtual ICollection<City> Citys { get; set; } = null!;
-   }
+    public int Code { get; set; }
+    public string Name { get; set; } = null!;
+    
+    public virtual ICollection<City> Cities { get; set; } = new List<City>();
 }

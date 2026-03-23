@@ -1,24 +1,17 @@
 using DocDes.Core.Base;
 
-namespace DocDes.Core.Model {
-    public class ApplicationUser : ModelBase
-    {
-        public int OrganizationId { get; set; }
-        public int PartyRoleId { get; set; }
-        public string EMail { get; set; } = null!;
-        public string Password { get; set; } = null!;
+namespace DocDes.Core.Model;
 
-        public virtual PartyRole PartyRole { get; set; } = null!;
-        public virtual Organization Organization { get; set; } = null!;
+public class ApplicationUser : ModelBase<int>
+{
+    public string? ExternalUserId { get; set; }
+    public int PartyRoleId { get; set; }
+    public int LanguageId { get; set; }
+    public Guid DigitalIdentityId { get; set; }
 
-        public void CopyFrom(ApplicationUser entity)
-        {
-            OrganizationId = entity.OrganizationId;
-            PartyRoleId = entity.PartyRoleId;
-            EMail = entity.EMail;
-            Password = entity.Password;
-            StatusId = entity.StatusId;
-        }
-        
-    }
+    public PartyRole PartyRole { get; set; } = null!;
+    public Language Language { get; set; } = null!;    
+    public DigitalIdentity DigitalIdentity { get; set; } = null!;
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }
+

@@ -1,17 +1,22 @@
 using DocDes.Core.Base;
 
-namespace DocDes.Core.Model {
+namespace DocDes.Core.Model;
 
-    public class RelatedParty : ModelBase
-    {
-        public int PartyId { get; set; }
-        public string Name { get; set; } = null!;
-        public string EntityType { get; set; } = null!;
-        public int EntityId { get; set; }
-        public string Role { get; set; } = null!;
-        public string Type { get; set; } = null!;
+public class RelatedParty : ModelBase<int>
+{
+    public int PartyId { get; set; }
 
-        public virtual Party Party { get; set; } = null!;
+    // İlişkili taraf — doğrudan Party FK
+    public int RelatedPartyId { get; set; }
 
-    }
+    // Bu ilişkideki rolü: "spouse", "employer", "subsidiary" vb.
+    public string Role { get; set; } = null!;
+
+    // Geçerlilik süresi (TM Forum'da TimePeriod)
+    public DateTime? ValidFrom { get; set; }
+    public DateTime? ValidTo { get; set; }
+
+    public virtual Party Party { get; set; } = null!;
+    public virtual Party Related { get; set; } = null!;
+
 }

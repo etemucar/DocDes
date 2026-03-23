@@ -1,13 +1,16 @@
-namespace DocDes.Core.Base {
-    public class ModelBase
-    {
-        public virtual int Id { get; set; }
-        public virtual int StatusId { get; set; } = 1;
-        public virtual int IsDeleted { get; set; } = 0;
-        public virtual DateTime? CreateDate { get; set; }
-        public virtual int? CreatedBy { get; set; }
-        public virtual DateTime? UpdateDate { get; set; }
-        public virtual int? UpdatedBy { get; set; }
-    }
+namespace DocDes.Core.Base;
+
+public abstract class ModelBase
+{
+    public virtual int StatusId { get; set; } = 1;
+    public virtual int IsDeleted { get; set; } = 0;
+    public virtual DateTime? CreateDate { get; set; }
+    public virtual int? CreatedBy { get; set; }
+    public virtual DateTime? UpdateDate { get; set; }
+    public virtual int? UpdatedBy { get; set; }
 }
 
+public class ModelBase<TKey> : ModelBase
+{
+    public virtual TKey Id { get; set; } = default!;
+}
