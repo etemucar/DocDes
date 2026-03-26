@@ -5,6 +5,7 @@ using DocDes.Core.Repository;
 using DocDes.Core.Model;
 using DocDes.Service.Features.Commands;
 using DocDes.Service.Features.Handlers;
+using DocDes.Service.Dtos.Requests;
 
 namespace DocDes.Service.Tests.Features.Handlers;
 
@@ -50,7 +51,7 @@ public class CreateIndividualCommandHandlerTests
             .Returns(Task.CompletedTask);
 
         // Act
-        var result = await _handler.Handle(command, CancellationToken.None);
+        var result = await _handler.Handle(command, TestContext.Current.CancellationToken);
 
         // Assert
         result.Should().NotBeNull();
@@ -80,7 +81,7 @@ public class CreateIndividualCommandHandlerTests
             .Returns(Task.CompletedTask);
 
         // Act
-        await _handler.Handle(command, CancellationToken.None);
+        await _handler.Handle(command, TestContext.Current.CancellationToken);
 
         // Assert
         _partyRepositoryMock.Verify(
@@ -110,7 +111,7 @@ public class CreateIndividualCommandHandlerTests
             .Returns(Task.CompletedTask);
 
         // Act
-        await _handler.Handle(command, CancellationToken.None);
+        await _handler.Handle(command, TestContext.Current.CancellationToken);
 
         // Assert
         capturedIndividual.Should().NotBeNull();
@@ -139,7 +140,7 @@ public class CreateIndividualCommandHandlerTests
             .Returns(Task.CompletedTask);
 
         // Act
-        await _handler.Handle(command, CancellationToken.None);
+        await _handler.Handle(command, TestContext.Current.CancellationToken);
 
         // Assert
         capturedIndividual.ValidFor.StartDateTime.Should().Be(DateTime.MinValue);
@@ -157,7 +158,7 @@ public class CreateIndividualCommandHandlerTests
         {
             GivenName  = "Ahmet",
             FamilyName = "Yılmaz",
-            ValidFor   = new DocDes.Service.Dtos.Requests.TimePeriodRequest
+            ValidFor   = new TimePeriodRequest
             {
                 StartDateTime = startDate,
                 EndDateTime   = endDate
@@ -175,7 +176,7 @@ public class CreateIndividualCommandHandlerTests
             .Returns(Task.CompletedTask);
 
         // Act
-        await _handler.Handle(command, CancellationToken.None);
+        await _handler.Handle(command, TestContext.Current.CancellationToken);
 
         // Assert
         capturedIndividual.ValidFor.StartDateTime.Should().Be(startDate);

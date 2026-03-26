@@ -1,10 +1,11 @@
 using DocDes.Core.Data;
-using DocDes.Data;
+using DocDes.Infrastructure;
 using DocDes.Api.Services;
 using DocDes.Core.Services;
-using DocDes.Core.Model;
+using DocDes.Core.Security;
 using DocDes.Core.Repository;
-using DocDes.Data.Repositories;
+using DocDes.Infrastructure.Repositories;
+using DocDes.Infrastructure.Security;
 
 namespace DocDes.Api.Extensions;
 public static class ServiceCollectionExtensions
@@ -15,6 +16,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<ITokenService, TokenService>();
 
         return services;
     }

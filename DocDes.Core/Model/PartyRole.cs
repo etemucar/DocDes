@@ -1,16 +1,18 @@
 using DocDes.Core.Base;
+using DocDes.Core.TMFCommon;
 
 namespace DocDes.Core.Model;
 
 public class PartyRole : ModelBase<int>
 {
     public int PartyId { get; set; }
-    public int PartyRoleTypeId { get; set; } //1 : Site Admin 2 : Store Admin 3 : ApplicationUser 4 : Customer 5 : BillAccount
+    public string PartyRoleTypeCd { get; set; } = null!; //1 : Site Admin 2 : Store Admin 3 : ApplicationUser 4 : Customer 5 : BillAccount
+    public TimePeriod ValidFor { get; set; } = new();
 
     public virtual Party Party { get; set; } = null!;
     public virtual PartyRoleType PartyRoleType { get; set; } = null!;
     public virtual Customer? Customer { get; set; }         
-    public virtual ApplicationUser ApplicationUser { get; set; } = null!;
+    public virtual DigitalIdentity? DigitalIdentity { get; set; }
     public virtual PartyRoleAccount PartyRoleAccount { get; set; } = null!;
 
 }

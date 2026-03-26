@@ -1,4 +1,4 @@
-using System.Net.Http.Headers;
+using DocDes.Core.Enums;
 
 namespace DocDes.Service.Dtos.Requests;
 
@@ -13,7 +13,7 @@ public class ContactMediumRequest
     public string MediumType { get; set; } = null!;
     public bool   Preferred  { get; set; }
     public TimePeriodRequest ValidFor { get; set; } = new();
-    public ContactMediumCharacteristicRequest Characteristic { get; set; } = new();
+    public Dictionary<string, object> Characteristic { get; set; } = new();
 }
 
 public class ContactMediumCharacteristicRequest
@@ -41,4 +41,18 @@ public class PartyOrPartyRoleRequest
     public string Id           { get; set; } = null!;
     public string Type         { get; set; } = null!;
     public string ReferredType { get; set; } = null!;
+}
+
+public class CredentialRequest
+{
+    public CredentialType CredentialType { get; set; }
+    public int? TrustLevel { get; set; }
+    public List<CredentialCharacteristicRequest> Characteristics { get; set; } = new();
+    public List<ContactMediumRequest> ContactMedia { get; set; } = new();
+}
+
+public class CredentialCharacteristicRequest
+{
+    public string Name { get; set; } = null!;   // "password" — hash'i biz üretiriz
+    public string Value { get; set; } = null!;
 }

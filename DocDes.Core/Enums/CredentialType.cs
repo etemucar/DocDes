@@ -1,3 +1,5 @@
+namespace DocDes.Core.Enums;
+
 public enum CredentialType
 {
     Password,  // Local auth

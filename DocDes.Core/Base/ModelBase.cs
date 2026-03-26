@@ -1,8 +1,10 @@
+using DocDes.Core.Enums;
+
 namespace DocDes.Core.Base;
 
 public abstract class ModelBase
 {
-    public virtual int StatusId { get; set; } = 1;
+    public virtual GeneralStatus Status { get; set; }
     public virtual int IsDeleted { get; set; } = 0;
     public virtual DateTime? CreateDate { get; set; }
     public virtual int? CreatedBy { get; set; }

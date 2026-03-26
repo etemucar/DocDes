@@ -6,13 +6,13 @@ namespace DocDes.Core.Security
     {
         public string UserName { get; set; }= string.Empty;
         public int UserId { get; set; }
-        public string Email { get; set; }= string.Empty;
+        public string UserCredential { get; set; }= string.Empty;
 
-        public TokenUser (string userName, int userId, string email)
+        public TokenUser (string userName, int userId, string userCredential)
         {
             UserName = userName;
             UserId = userId;
-            Email = email;
+            UserCredential = userCredential;
         }
     }
 

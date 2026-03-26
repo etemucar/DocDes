@@ -1,4 +1,5 @@
 using DocDes.Core.Base;
+using DocDes.Core.TMFCommon;
 
 namespace DocDes.Core.Model;
 
@@ -12,6 +13,7 @@ public class Organization : ModelBase<int>
     public string? TradeName { get; set; }
     public long TradeRegisterNumber { get; set; }
     public long MersisNo { get; set; }
+    public TimePeriod ValidFor  { get; set; } = new();
 
     public virtual Party Party { get; set; } = null!;
     public virtual ICollection<PartyRole> PartyRoles { get; set; } = null!;

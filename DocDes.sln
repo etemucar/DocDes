@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDes.Core", "DocDes.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDes.Service", "DocDes.Service\DocDes.Service.csproj", "{19F124A7-9510-4B7F-8F6D-9F074A0A6BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDes.Data", "DocDes.Data\DocDes.Data.csproj", "{E76EE53D-170C-481A-87D3-2A3FECF20EF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDes.Infrastructure", "DocDes.Infrastructure\DocDes.Infrastructure.csproj", "{E76EE53D-170C-481A-87D3-2A3FECF20EF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDes.Service.Test", "DocDes.Service.Test\DocDes.Service.Test.csproj", "{2737CE0B-DAB4-414F-B4DC-0D9531FA7DDF}"
 EndProject

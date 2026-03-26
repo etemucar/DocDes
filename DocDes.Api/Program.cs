@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using DocDes.Data;
+using FluentValidation;
+using DocDes.Infrastructure;
 using DocDes.Service.Behaviors;
-using DocDes.Core.Base; // AppSettings ve diğer base modeller için
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Scalar.AspNetCore;
 using DocDes.Settings.Core;
+using DocDes.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DocDesDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
         npgsqlOptions
-            .MigrationsAssembly("DocDes.Data")
+            .MigrationsAssembly("DocDes.Infrastructure")
             .MigrationsHistoryTable("__EFMigrationsHistory"))
            .UseSnakeCaseNamingConvention());
 
@@ -26,13 +27,13 @@ builder.Services.AddMediatR(cfg =>
 {
     // Mevcut assembly'deki Handler'ları kaydet
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-    
-    // Service katmanındaki Handler'ları ve TransactionalBehavior'ı kaydet
-    cfg.RegisterServicesFromAssembly(typeof(DocDes.Service.Behaviors.TransactionalBehavior<,>).Assembly);
-    
-    // Pipeline'a TransactionalBehavior ekle (CQRS yönetimi için)
+    cfg.RegisterServicesFromAssembly(typeof(TransactionalBehavior<,>).Assembly);
+    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(TransactionalBehavior<,>));
 });
+
+builder.Services.AddValidatorsFromAssembly(
+    typeof(TransactionalBehavior<,>).Assembly);
 
 // 3. AutoMapper Yapılandırması
 builder.Services.AddAutoMapper(cfg => 
@@ -48,7 +49,7 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 // Extension method ile gelen diğer servis kayıtları
-// builder.Services.AddApplicationServices(); 
+builder.Services.AddApplicationServices(); 
 
 // 5. OpenAPI & Scalar (Modern Dokümantasyon)
 builder.Services.AddOpenApi(); 
